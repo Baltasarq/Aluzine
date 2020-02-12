@@ -10,7 +10,6 @@ Estás hecho polvo, trabajas hasta tarde ... etc.
 Debe indicarse casi de contínuo que estás hecho un asco, que
 quieres irte a casa. El café, por ejemplo, no hace efecto.
 
-
 Sabes que el problema se halla en la función 'pideLongitudDePlanta()',
 y debes pulsar F7 para "entrar" en ella.
 Debe aparecer esta información en pantalla, y sugerirse que se pulse

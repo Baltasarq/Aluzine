@@ -1,0 +1,42 @@
+
+
+Aluzine
+      (dentro del ordenador)
+por Baltasar
+
+
+Eres un programador, depurando un programa.
+Estás hecho polvo, trabajas hasta tarde ... etc.
+Debe indicarse casi de contínuo que estás hecho un asco, que
+quieres irte a casa. El café, por ejemplo, no hace efecto.
+
+
+Sabes que el problema se halla en la función 'pideLongitudDePlanta()',
+y debes pulsar F7 para "entrar" en ella.
+Debe aparecer esta información en pantalla, y sugerirse que se pulse
+'F7' en el teclado.
+
+Apareces en un banco de memoria. El tamaño es exacto a tí. Debe describirse
+el proceso de entrada de datos mediante el Chip DMA del PC.
+Al cabo de un ratillo (entretener al jugador con su nueva forma y algo de decorado), 
+aparece un brazo y te coge, llevándote a una caché.
+
+La Caché es un sitio como la RAM, pero el jugador debe hacerse a la idea
+de que, de alguna manera es distinto (allí no se identifica a los datos
+por sus direcciones, de manera exacta y unívoca).
+En la caché podrías activar un interruptor que indica que te van a llevar.
+Existe un indicador de: ULA (ADD, MUL, SHR, SHL), e I/O:salida.
+
+Activas el interruptor cuando indica "I/O".
+Entonces te meten en el Bus de datos, y apareces en la ... 
+DMA de nuevo, donde eres empujado hacia un tunel donde hay una luz al final.
+Te despiertas, y después de tremendo sofocón decides irte a casa.
+Debe crearse la atmósfera de extrañeza, cansancio acumulado, pero curiosidad
+acerca de qué ha pasado. El jugador debe "irse a casa", aceptando preguntarse
+qué ha pasado pero sin encontrar respuesta.
+
+Si activas el interruptor cuando era una operación de ULA, entonces
+entrar por el bus de datos en la ULA. La ULA realiza operaciones sobre
+los datos, desplazando bits, cambiándolos ... debería ser una experiencia
+horrible para un dato el pasar por la ULA. Aquí podrías despertar ...
+¿muerto?

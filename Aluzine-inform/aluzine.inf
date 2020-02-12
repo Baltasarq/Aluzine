@@ -1,0 +1,767 @@
+! aluzine.z5
+!  Aluzine: dentro del ordenador.
+!      baltasarq@gmail.com
+!  Retomado para pulido en 2016
+
+! Constantes
+Constant Historia "Aluzine^^";
+Constant Titular  "La aventura del trabajo diario...^^^";
+
+! Número de serie
+Release 2;
+
+! Constantes para modificar el comportamiento del parser
+Constant HAY_CURIOSIDADES;
+Constant PUNTUACION_MAX 1;
+Constant ADMITIR_COMANDO_SALIDAS;
+
+! Incluir la librería (en parte)
+! Estas líneas están presentes en cualquier aventura
+
+Include "EParser";
+Replace PensarSub;
+Include "Acciones";
+Include "Cortos";
+Include "Responde";
+Include "smw";
+
+! Cortos =============================================================
+
+cortometraje Padentro
+with
+      descripcion
+            "El destello de luz te envuelve, bañando las paredes del habitáculo, cegándote...
+             y lo siguiente que puedes percibir es como si viajaras
+             a gran velocidad... "
+             "^...la pantalla aparece de nuevo frente a tí,
+              apróximándose vertiginosamente..."
+             "^...los puntos de la pantalla aparecen cada vez más definidos ..."
+             "^...cada vez más separados..."
+             "^Una transformación que no puedes describir tiene lugar en tí...
+              te notas extraño... ¡plano!"
+             "^Y finalmente, apareces en un cuarto llamado DMA, del cuál un
+              brazo robotizado con una espátula en su final te recoge..."
+             "^...para
+              colocarte en un carrito, encima de un carril llamado BUS."
+             "^Mientras te desplazas por el BUS, puedes ver una línea roja
+              que se activa, con el indicador ~IRQ~.^^"
+
+;
+
+cortometraje Pafuera
+with
+      descripcion
+            "^Te ves envuelto en la luz... una luz cegadora, que te empuja
+             y parece trasladarte, a algún lugar..."
+            "^...a una velocidad asombrosa... notas el vértigo en tu estómago..."
+            "^Notas un cambio en ti..."
+            "^Ahora, ya no te mueves..."
+            "^..."
+            "^Todo está oscuro. Estás desorientado. ¿Dónde estás ahora?"
+            "^Sin embargo, notas ahora todos tus miembros. ¡Vuelven a estar
+              en su sitio!."
+            "^Repentinamente, convulsivamente, aspiras una gran bocanada de aire,
+              como si no lo hubieras hecho por minutos..."
+            "^Te encuentras doblado en una situación que te resulta extraña..."
+            "^Instintivamente... levantas la cabeza. Y te das cuenta de que
+              no veías nada porque tenías la cara entre los brazos."
+            "^Estás en el habitáculo. Todo vuelve a su sitio. Todo está en su sitio, sí. La pantalla,
+              el teclado, el equipo, el flexo... todo normal."
+            "^Tu respiración se normaliza, paulatinamente. Poco a poco... tu cabeza empieza a funcionar.^
+              Intentas buscar una explicación."
+            "^Debes haberte quedado dormido..."
+            "^Todo ha sido un sueño..."
+            "^¿No?^^"
+;
+
+
+! Definición de localidades ==========================================
+
+Object limbo
+;
+
+!---------------------------------------------------------------------
+!	Habitaculo
+!---------------------------------------------------------------------
+
+Object habitaculo "Habitáculo"
+    with
+	descripcion
+       "En la oficina. O en tu parte de ella, con su pequeña abertura lateral
+        al resto del mundo.
+        La penumbra envuelve el pequeño habitáculo, ya que,
+        exceptuándote a ti, todos se han ido ya. El flexo, que ilumina
+        la pantalla de tu equipo, es tu única compañía ahora, a excepción del
+        suave ronroneo del equipo.",
+       afuera pasillo,
+       no_puedes_ir "Estás dentro de tu pequeño habitáculo, del que podrías salir."
+has luz;
+
+Object estanteria "estantería" habitaculo
+with
+      nombre 'estanteria' 'estante',
+      inicial "Encima del equipo está la estantería donde guardas todos los
+               manuales.",
+      descripcion "Sabes que ahí suelen estar todas las respuestas a tus
+               problemas... normalmente. El manual de hardware tiene recuerdos especiales para tí.",
+has estatico femenino soporte transparente;
+
+Object manualHardw "manual de hardware" estanteria
+with
+      nombre 'libro' 'volumen' 'manual' 'hardware',
+      descripcion [;
+            if (self notin jugador) {
+                  print "Primero, coges el libro...^";
+                  move self to jugador;
+            }
+
+            print "^Tomas el volumen y echas una ojeada al glosario de términos.
+                   ^^
+                   ^RAM  : Lugar del ordenador donde se almacena la información, en bloques
+                         de ~palabras~, de ancho fijo.
+                   ^Bit  : Las palabras están formadas por un número variable de bytes, siendo
+                           actualmente el ancho más actualizado el de 4 bytes. Cada byte está formado
+                           siempre por 8 bits, que pueden contener el valor 0 ó 1.
+                   ^ULA  : Parte del procesador central encargada de realizar cálculos.
+                   ^I/O  : Entrada o salida (input/output).
+                   ^Caché: Lugar de memoria, similar a la RAM, pero más rápida, que se utiliza
+                           para guardar los datos de mayor uso.
+                   ^CPU  : Unidad central de procesamiento.
+                   ^BUS  : Pistas que interconectan los componentes del ordenador. El bus de datos
+                           (DATA BUS), interconecta la memoria con la CPU. El de control permite
+                           que se manden señales de control a la RAM (p.ej., lectura/escritura)
+                           y otros componentes, como la ROM. El de direcciones se utiliza única
+                           y exclusivamente para gestionar direcciones de memoria. Así, si la CPU
+                           necesita leer un dato en la dirección ABBFFFAA, mandará ABBFFFAA por el
+                           bus de direcciones, READ (leer) por el bus de control, y obtendrá el valor
+                           por el bus de datos.
+                   ^DATA : Datos.
+                   ^DMA  : Dispositivo de acceso directo a memoria (Direct Memory Access). Cuando el
+                           ordenador debe leer/escribir del disco, por ejemplo, le encarga el trabajo al DMA,
+                           indicándole en qué dirección de memoria debe poner/tomar los datos. Cuando
+                           el chip de DMA termina, avisa a la CPU mediante la activación de una línea
+                           IRQ exclusiva.
+                   ^IRQ  : Petición de interrupción (Interrupt Request).
+                   ^SHR  : Desplazamiento de bits, de un byte o una palabra, a la derecha.
+                   ^SHL  : Desplazamiento de bits, de un byte o una palabra, a la izquierda.
+                   ^ADD  : Sumar dos números.
+                   ^MUL  : Multiplicar dos números.
+                   ^INTF : Interfaz de entrada/salida.
+
+                   ^^Este manual lo conservas desde tus tiempos de estudiante. Te trae gratos
+                   recuerdos de aquella época.^";
+      ]
+;
+
+Object silla "silla" habitaculo
+with
+      nombre 'silla',
+      descripcion "Es una silla ergonómica.",
+      antes [;
+            coger: "¡Por el amor de Dios! ¿Para qué querrías coger la silla?";
+            meterse: jugadorA(silla, 1); "Te sientas frente al ordenador.^";
+      ]
+has transparente estatico femenino soporte;
+
+Object keyboard "teclado" habitaculo
+with
+      nombre 'teclado' 'f7' 'espacio' 'enter',
+      descripcion "Pues sí, un teclado. Ya sabes, lleno de teclas...",
+      antes [;
+            teclear: "No, ahora estás en el modo de depuración, como puedes ver en la pantalla.
+                      Sólo pulsar algunas de las teclas tienen sentido ahora.
+                      Por ejemplo, F7 ~entra~ en una función y
+                      ejecuta su primera instrucción.";
+            empujar: if (jugador.viajeHecho)
+                     {
+                           "No, no, no... por una noche, es más que
+                            suficiente.^";
+                     }
+                     else {
+                           if (jugador notin silla)
+                           {
+                                 print "Te sientas en la silla, observas momentánemanete la pantalla y...^";
+                           }
+                           print "Pulsas F7...^";
+                           jugador.viajeHecho = true;
+                           CambiarJugador(jugadorWord);
+                           print "De repente, todo cambia... Un destello cegador parece provenir de la pantalla...^^";
+                           wait();
+                           Padentro.proyeccion();
+                           jugadorA(RAM, 2);
+                           arrancarReloj(RAM, 7);
+                           rtrue;
+                     }
+      ]
+has estatico;
+
+Object pantalla "pantalla" habitaculo
+with
+      nombre 'pantalla' 'monitor' 'crt',
+      descripcion [;
+            print "En la pantalla, tu depurador marca la línea del programa que será
+             ejecutada a continuación. La función que contiene el problema
+             es la que estás depurando ahora, la de ~pideDatosAlUsuario()~:^^
+                  void pideDatosAlUsuario() {^
+                     int x = pideLongitudPlano();^
+                     int y = pideLongitudProfundidad();^^
+                     return x*y;^
+                  }^^
+             En el visor de variables, se lee:^
+             x(0x0AB7DEFF): 0^
+             y(0x0AB7DFFF): 0
+            ^^
+            La barra de estado reza: ~Pulse F7 para entrar en la función~.^^";
+
+            if (jugador.viajeHecho)
+            {
+                  "¡Vaya!... la línea resaltada ahora es la siguiente:^
+                   ~int y = pideLongitudProfundidad();~^^";
+            } else {
+                  "La barra marcadora está situada en:^
+                  ~int x = pideLongitudPlano();~^^";
+            }
+      ]
+has estatico femenino;
+
+!---------------------------------------------------------------------
+!	Pasillo
+!---------------------------------------------------------------------
+
+Object pasillo "Pasillo"
+with
+            descripcion [;
+                  print "El pasillo está envuelto en penumbra. Aunque sabes que un poco más
+                         a la izquierda están los ascensores, y la máquina de café
+                         está ahí mismo, enfrente de ti.^
+                         Puedes (¿debes?) volver a tu habitáculo.^";
+                  if (jugador.viajeHecho)
+                  {
+                        print "No puedes dejar de mirar hacia atrás, hacia tu habitáculo,
+                               como si fuera la última vez...^La pantalla parpadea ligeramente cuando no
+                               miras directamente hacia ella. Todo parece normal... tan normal...^";
+                  }
+            ],
+            adentro [; "Puedes entrar en el ascensor y en tu habitáculo... especifica..."; ],
+            afuera [; <<meterse ascensor>>; ],
+            no_puedes_ir "Por un lado, está todo oscuro, y por el otro, nunca
+                          te meterías en el habitáculo de otro.",
+has luz;
+
+Object habitaculoFalso "habitaculo" pasillo
+with
+      nombre 'habitaculo' 'cubiculo' 'oficina' 'tu' 'mundo' 'mundillo',
+      descripcion "El habitáculo donde trabajas.
+                   A veces te sorprendes de que puedas meterte en un sitio tan
+                   pequeño.",
+      antes [;
+            meterse:    print "Vuelves al chollo...^";
+                        jugadorA(habitaculo, 2);
+                        rtrue;
+      ],
+has estatico oculto;
+
+Object ascensor "ascensor" pasillo
+with
+      inicial "Hay un ascensor abierto en esta planta.",
+      nombre 'ascensor' 'ascensores',
+      descripcion "Es el típico ascensor de siempre",
+      antes [;
+            coger: "¿Tu flipas?";
+            meterse: if (jugador.viajeHecho)
+                     {
+                           banderafin = 2;
+                           "Te vas a casa tranquilamente: mañana será otro día.
+                            Al fin y al cabo, en este estado de poco sirves a
+                            la empresa.";
+                     }
+                     else
+                     {
+                           "Te gustaría entrar en el ascensor y largarte a casa, pero... tu maldita conciencia te impide irte sin dejar
+                            el trabajo hecho.";
+                     }
+      ],
+has luz estatico transparente;
+
+Object maquinaCafe "máquina de café" pasillo
+with
+      inicial [; rtrue; ],
+      nombre 'maquina' 'expendedora',
+      descripcion "Es una máquina de café sencilla. Es de la empresa, por lo
+                   que no es necesario utilizar monedas, y tiene un botón que
+                   hace que salga café.",
+      antes [;
+            coger: "¿Tu flipas?";
+      ]
+has estatico transparente;
+
+Object cafe "café" limbo
+with
+      nombre 'cafe' 'vaso',
+      descripcion "Es un café de máquina, pero es pasable.",
+      antes [;
+            beber:
+                  if (jugador.viajeHecho)
+                  {
+                        move self to limbo;
+                        "Nah. Me voy a casa. A dormir. Nada de café.^
+                         Lo viertes en un pequeño fregadero de la máquina.^";
+                  }
+                  else {
+                        move self to limbo;
+                        "Estaba muy bueno.^
+                         Tiras el vaso en un compartimento de la máquina y
+                         te planteas volver, a terminar el trabajo.^";
+                  }
+      ]
+has comestible;
+
+Object botonMC "botón" maquinaCafe
+with
+      nombre 'boton',
+      descripcion "Pulsándolo sale café.",
+      antes [;
+            empujar:
+                     if (cafe in jugador)
+                     {
+                           "Mejor termina el que ya tienes.";
+                     }
+                     else {
+                           if (jugador.viajeHecho)
+                           {
+                                 print "Quizás no te conviene el café, sino
+                                        más bien ir a casa a dormir...^";
+                           }
+                           move cafe to jugador;
+                           "La máquina hace salir un vaso, y tras varios gruñidos y
+                      silbidos, el café está servido. Tomas el vaso de la
+                      pequeña repisa de plástico.";
+                    }
+      ]
+;
+
+! -----------------------------------------------------------------------------
+! RAM
+! -----------------------------------------------------------------------------
+
+Object RAM "RAM"
+with
+      tiempo_restante 7,
+      tiempo_agotado [;
+            print "^^Un brazo mecanizado, terminado en una especie de espátula, te recoge
+                   de tu plaza y te coloca en un carrito.^
+                   El carrito corre por un lugar etiquetado como DATA BUS, a una velocidad
+                   espantosa, que, sorprendentemente, no te da miedo..^^";
+            arrancarReloj(Cache, 20);
+            jugadorA(Cache, 2);
+            rtrue;
+      ],
+      cada_turno [;
+            if (self.tiempo_restante == 1)
+            {
+                  print "De repente, te das cuenta de que la línea de IRQ que estaba activa...
+                         se ha apagado...^";
+            }
+      ],
+      descripcion "El lugar en el que reposas... sí, reposar sería la mejor
+                   forma de decirlo... es una gran caja en la que existen
+                   un montón de divisiones. Tú ocupas una de ellas."
+has luz;
+
+Object cartel "cartel" RAM
+with
+      nombre 'cartel' 'aviso',
+      descripcion "El cartel indica: ~bank 3BF~. Debajo de él hay varias etiquetas.
+                   Una de ellas está justamente enfrente a tí."
+has estatico;
+
+Object etiqueta "etiqueta" RAM
+with
+      nombre 'etiqueta' 'etiquetas',
+      descripcion "Hay varias, secuenciales, cada una con su número, en hexadecimal.^
+                   La que está enfrente de ti, reza: #0AB7DEFF"
+has estatico femenino;
+
+Object LineaIRQ "líneas de IRQ" RAM
+with
+      esta_en [;
+            if (localizacion == RAM
+             || localizacion == Cache)
+            {
+                   rtrue;
+            }
+            else   rfalse;
+      ],
+      nombre 'lineas' 'linea' 'irq' 'roja' 'activa' 'activada',
+      inicial "Desde aquí puedes ver las líneas de IRQ.",
+      descripcion [;
+            print "Hay varias líneas de IRQ, cada una etiquetada con su número. ";
+            if (RAM.tiempo_restante > 2)
+            {
+                  print "Una de ellas está activada.^";
+            }
+            rtrue;
+      ]
+has estatico;
+
+! -----------------------------------------------------------------------------
+! Cache
+! -----------------------------------------------------------------------------
+Object Cache "Caché"
+with
+      tiempo_restante 20,
+      tiempo_agotado [;
+            print "El brazo robotizado, que empieza ya a ser familiar, te
+                   te recoge y te coloca de nuevo en el BUS DATA, el destino
+                   es... ^";
+
+            jugadorA(ULA, 2);
+
+            print "El carrito avanza por el BUS, a toda velocidad...^";
+
+            rtrue;
+      ],
+      descripcion "Estás en otra gran caja, como la anterior, pero, en este
+                   caso, no hay etiquetas, sino indicadores, que cada vez que
+                   se encienden, provocan la salida de los otros como tú, tal y como
+                   ves constantemente a tu alrededor.^
+                   Hay un avisador, con las siglas ~CPU~ marcadas en blanco en su parte superior.
+                   Es como un gran marcador, en el centro de esta caja,
+                   que cambia, vertiginosa, contínuamente, y según puedes ver, cada vez que cambia salen
+                   otros como tú de sus plazas hacia el DATA BUS. No puedes saber
+                   cuál es su destino, pero supones que será distinto para cada una
+                   de las operaciones."
+has luz;
+
+Object Indicador "indicador" Cache
+with
+      nombre 'indicador',
+      descripcion "Los indicadores son como bombillas, que, cuando se encienden,
+                   provoca la salida de las otras ~cosas~ de sus plazas.^
+                   Tú tienes el tuyo. Sientes que, de alguna forma, directamente, podrías activarlo.",
+      antes [;
+            empujar, quemar: PararReloj(cache);
+                     print "Ese familiar brazo robotizado te recoge, y te coloca
+                            en el DATA BUS... ves de reojo como otra línea de IRQ se activa...
+                            ^la velocidad aumenta... te diriges a una parte que ya te resulta
+                             extrañamente familiar...
+                            ^^";
+                     if (avisador.estado == 3)
+                     {
+                           jugadorA(DMA, 2);
+                     }
+                     else jugadorA(ULA, 2);
+                     rtrue;
+      ]
+has estatico;
+
+Object avisador "avisador" Cache
+with
+      estado 0,
+      nombre 'avisador' 'marcador' 'negro',
+      descripcion [;
+            print "El avisador parece marcar contínuamente las operaciones de la CPU.
+                   Cada vez que te fijas en él, ya no marca lo que marcaba antes...
+                   ^Ahora mismo marca: ";
+            if (self.estado == 0)
+            {
+                  print "SHL";
+            }
+            else
+            if (self.estado == 1)
+            {
+                  print "SHR";
+            }
+            else
+            if (self.estado == 2)
+            {
+                  print "I/O";
+            }
+            else
+            if (self.estado == 3)
+            {
+                  print "ADD";
+            }
+            else
+            if (self.estado == 4)
+            {
+                  print "MUL";
+            }
+
+            print "^^";
+      ],
+      cada_turno[;
+            self.estado++;
+            self.estado = self.estado % 5;
+      ]
+has estatico;
+
+! -----------------------------------------------------------------------------
+! DMA
+! -----------------------------------------------------------------------------
+Object DMA "DMA"
+with
+      descripcion
+            "Te encuentras en un lugar extraño llamado ~DMA~, aunque... un momento...
+            ¡ya has estado aquí antes...! Pero... pero no en esta parte...
+             es como una especie de túnel, en el que puedes ver un destello de luz al final.",
+      cada_turno [;
+            print "^Algo te empuja hacia el exterior... la luz va haciéndose más
+             amplia y brillante...^";
+            puntuacion++;
+            wait();
+            Pafuera.proyeccion();
+            cambiarJugador(JugadorHumano);
+            jugadorA(silla, 2);
+            rtrue;
+      ]
+has luz;
+
+! -----------------------------------------------------------------------------
+! ULA
+! -----------------------------------------------------------------------------
+Object ULA "ULA"
+with
+      descripcion
+            "La ULA es otra gran caja, pero que no te sitúa en una división
+             como en las otras, sino que estás en una cinta transportadora
+             que avanza rápidamente hacia... ¡Oh no...!¡Unas ruedas
+             de sierra, martillos... es horrible, ¡horrible!^",
+      cada_turno [;
+            banderafin = 1;
+            "La maquinaria te corta y te estira a voluntad... el dolor es
+             horrible... ^^
+             [--]
+             Al día siguiente, encuentran tu cuerpo apoyado en la mesa, con
+             la cabeza reposando entre los brazos. ~Agotamiento extremo,
+             que provocó un ataque al corazón~, dirá la autopsia...
+             ^Ya debes haber averiguado que...^";
+      ]
+has luz;
+
+! ---------------------------------------------------------------------------------------
+! Las curiosidades son un pequeño premio para el jugador que llega hasta el final
+
+[ Curiosidades;
+      print (s_bold) "Aluzine^";
+      print (s_underline) "por Baltasar, el arquero.";
+      print "^^^Aluzine es una aventura programada en un par de tardes, para participar
+             urgentemente en la NanoComp 4.^
+
+             Como curiosidad, quizás te preguntarás qué significan las siglas PBC... bueno,
+             es un término acuñado en la universidad, que significa ~Pu... Becario de los Coj...~.
+             Encantador, ¿no?.^
+
+             ^Mándame tus comentarios a:^";
+      print (s_underline) "baltasarq@@64gmail.com^^";
+];
+
+
+! -----------------------------------------------------------------------------
+! Después de las localidades, incluimos la gramática
+! Este include siempre está aquí en todos los programas
+
+Include "Gramatica";
+
+! Definiciones de la gramática para este juego
+
+[PensarSub;
+      "No sabes si serás capaz... estás tremendamente embotado.";
+];
+
+[MagiaSub;
+      if (jugador == jugadorHumano) {
+            if (jugador notin habitaculo)
+            {
+                  print "Algo ocurre en el habitáculo... puedes oirlo desde aquí...            ^";
+            }
+            "El ventilador del equipo parece atascarse... CRAC... CRAC... y después sigue.";
+      } else {
+            PararReloj(RAM);
+            PararReloj(Cache);
+            print "...algo sucede... no sabes lo qué... no sabes cómo... pero estás en...^";
+            jugadorA(DMA, 2);
+            rtrue;
+      }
+];
+
+[TeclearSub;
+      "Aquí no hay teclados.";
+];
+
+Verb 'teclea'
+      * -> teclear
+      * 'en' noun -> teclear
+      * topic 'en' noun -> teclear
+;
+
+Verb 'introduce' = 'teclea';
+Verb 'activa' = 'empuja';
+Verb 'xyzzy'
+      * -> magia
+;
+
+
+!---------------------------------------------------------------------
+!	Inicialización
+!---------------------------------------------------------------------
+
+Responde toiCansau
+private
+      elementos
+            "Estoy deseando terminar para irme a casa"
+            "Se me cierran los ojos... pero debo terminar el trabajo"
+            "¡Trabajo puñetero!"
+            "Ayyyy... qué cansadito estoy... ¡y qué poquito me quejo!"
+            "Mmmm... estar ahora en camita... qué maravilla..."
+            "No veo la hora de agarrar la cama"
+            "Yo aquí de pringao, solito, como siempre..."
+            "¿Podría echar una cabezadita en el pasillo?"
+            "Cuando acabe este proyecto, voy a dormir dos días enteros..."
+            "¡Necesito unas vacaciones!"
+            "Estoy que me caigo"
+;
+
+Responde toiAluzinao
+private
+      elementos
+            "¿Sucedería en la realidad?"
+            "¿Habrá pasado de verdad?"
+            "Fue un sueño... me quedé dormido delante de la pantalla... y soñé... qué digo...
+             ¡tuve una pesadilla!"
+            "Mejor que me vaya. En estas condiciones no doy más de mí."
+            "Tuvo que ser un sueño... no pudo ser otra cosa..."
+            "La verdad es que fue de lo más realista..."
+            "Un momento... ¿Pulsé F7 o soñé que pulsé F7?"
+            "Pulse o no pulsé F7... debería aparecer en pantalla si lo hice... estoy muy confuso..."
+            "En fin... tampoco sé si todo esto tiene mucha importancia... sólo fue un sueño, ¿no?"
+            "Es como aquella película, TRON. Una película para informáticos."
+;
+
+object jugadorHumano
+with
+      pensar [x;
+             print (s_bold) "Piensas: ~";
+             s_underline();
+             print (string) x;
+             s_normal();
+             print "~.^";
+      ],
+      viajeHecho false,
+      descripcion "Estás hecho un asco, necesitas una ducha y un
+                   buen sueñecito.",
+      cada_turno [;
+            if (jugador == self) ! Comprobación superflua, me temo.
+            {
+                  if (~~(self.viajeHecho))
+                  {
+                    if ((turnos % 4) == 0)
+                    {
+                          self.pensar(toiCansau.dev_msg());
+                    }
+                  }
+                  else {
+                          self.pensar(toiAluzinao.dev_msg());
+                  }
+            }
+      ],
+      reaccionar_antes [;
+            dormir: "Oh, sí, sí, sí. Ojalá pudieras hacerlo ahora mismo...";
+      ]
+;
+
+object jugadorWord
+with
+      viajeHecho false,
+      descripcion "Tienes una forma alargada, rectangular... indescriptible.
+                   Eso sí, dividido en 32 partes iguales.",
+      reaccionar_antes [;
+            coger: "Pero... ¡si ni siquiera tienes miembros!^";
+            tocar: "No puede ser... ¡no tienes manos!";
+            Probar: "¡Pero si no tienes boca!";
+            inv: "¿Dónde se supone que podría guardar las cosas?";
+      ]
+;
+
+[ Inicializar;
+	! Describe siempre del todo
+	modomirar = 2;
+	! Tú, como si fueras tonto
+	parser_listo = false;
+	! No digas nada sobre la puntuación (0 ó 1 sobre 1, está bastante claro)
+	modo_notificar = 0;
+
+	! Poner al jugador en su sitio
+	cambiarJugador(jugadorHumano);
+	localizacion = silla;
+
+	! Descripción inicial y retorno
+	print "(Los jugadores inexpertos deben teclear 'AYUDA' en
+		   el prompt: '>'.^Pulsa ENTER cada vez que veas: '...'.";
+	wait( "^^" );
+
+	"Trabajar hasta muy tarde parece que es el pan de cada día, últimamente.
+	La empresa PBCProyectos está soportando la mayor demanda de trabajo
+	de los últimos meses. Esta vez se trata de una aplicación de cálculo
+	de superficies que una empresa de arquitectura necesita urgentemente.^
+	Y te ha tocado a tí, claro...^
+	Tienes tantas ganas de irte a casa que se te cierran los ojos.^";
+];
+
+
+!-------------------------------------------------------------
+!	Decorados
+!-------------------------------------------------------------
+
+Include "Decorado-iate";
+
+class DecoradoNoMeToques
+class Decorado
+with
+      antes [;
+            examinar: rfalse;
+            coger: "Pero bueno... ¿para qué querrías coger eso?";
+            probar: "¡Anda ya!";
+            apagar: "¡Por favor!... concéntrate en el trabajo. Estás muy cansado y quieres irte a casa...";
+            tocar: "No es necesario. Debes concentrarte, terminar pronto y volver a casa.";
+            default: "Debes terminar y volver a casa de una vez, y eso no va a ayudarte a hacerlo.";
+      ]
+;
+
+
+DecoradoNoMeToques decoradoHabitaculo habitaculo
+        with describir
+            'flexo' "El flexo ilumina débilmente la pantalla." 0
+            'lampara' "El flexo ilumina débilmente la pantalla." G_FEMENINO
+            'equipo' "El ventilador de la unidad central ronronea suavemente." 0
+            'mesa' "Pues sí, es una mesa. El flexo y la pantalla están encima." G_FEMENINO
+            'ordenador' "El ventilador ronronea suavemente." 0
+            'habitaculo' "No hay mucho que decir: las paredes son del tipo
+                          transportable. Lo único que hay es una silla, tu
+                          equipo y tú." 0
+            'manuales' "Son varios libracos que están sobre la estantería." G_PLURAL
+
+;
+
+class DecoradoComunNoMeToques
+class DecoradoNoMeToques
+with
+      describir
+            'partes' "Son todas iguales... todas tienen un círculo en su interior" G_FEMENINO + G_PLURAL
+            'caja' "Tiene un montón de divisiones, donde hay otras ~cosas~ igualitas a ti." G_FEMENINO
+            'division' "La tuya parece igual a las otras." G_FEMENINO
+            'plaza' "Son todas iguales" G_FEMENINO
+            'plazas' "Son todas iguales" G_FEMENINO + G_PLURAL
+            'divisiones' "Son como compartimentos, cada uno con su etiqueta." G_PLURAL + G_FEMENINO
+            'circulos' "Mmmm... ¿ceros?" 0
+            'circulo' "Mmmm... ¿un cero?" 0
+            'cosa' "Todos sois iguales... planitos." G_FEMENINO
+            'cosas'"Todos sois iguales... planitos." G_FEMENINO
+;
+
+
+DecoradoComunNoMeToques decoradoRAM RAM
+;
+
+DecoradoComunNoMeToques decoradoCache Cache
+;

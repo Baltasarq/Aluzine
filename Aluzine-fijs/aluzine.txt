@@ -1,0 +1,91 @@
+Trabajar hasta muy tarde parece que es el pan de cada día, últimamente. La empresa PBCProyectos está soportando la mayor demanda de trabajo de los últimos meses. Esta vez se trata de una aplicación de cálculo de superficies que una empresa de arquitectura necesita urgentemente.
+Y te ha tocado a tí, claro...
+Tienes tantas ganas de irte a casa que se te cierran los ojos.
+
+Aluzine v2 20200229
+La aventura del trabajo diario de un programador...
+
+
+Habitáculo
+En la oficina. O mejor dicho en tu parte de ella, con su pequeña abertura lateral al resto del mundo. La penumbra envuelve el pequeño habitáculo, ya que, exceptuándote a ti, todos se han ido ya. El flexo, que ilumina la pantalla de tu equipo con su suave ronroneo, es tu única compañía ahora, a excepción del suave ronroneo del equipo. Una estantería se sitúa por encima de tu cabeza.
+
+> ex estanteria
+Sobre la estantería ves varios libracos: manuales.
+
+> ex manuales
+Uno de tus libros de referencia es un manual de hardware.
+
+> ex manual de hardware
+Sabes que ahí suelen estar todas las respuestas a tus problemas... normalmente. El manual de hardware tiene recuerdos especiales para tí.
+
+Tomas el volumen y echas una ojeada al glosario de términos. 
+
+
+RAM  : Lugar del ordenador donde se almacena la información, en bloques de "palabras", de ancho fijo. 
+Bit  : Las palabras están formadas por un número variable de bytes, siendo actualmente el ancho más actualizado el de 4 bytes. Cada byte está formado siempre por 8 bits, que pueden contener el valor 0 ó 1. 
+ULA  : Parte del procesador central encargada de realizar cálculos. 
+I/O  : Entrada o salida (input/output). 
+Caché: Lugar de memoria, similar a la RAM, pero más rápida, que se utiliza para guardar los datos de mayor uso. 
+CPU  : Unidad central de procesamiento. 
+BUS  : Pistas que interconectan los componentes del ordenador. El bus de datos (DATA BUS), interconecta la memoria con la CPU. El de control permite que se manden señales de control a la RAM (p.ej., lectura/escritura) y otros componentes, como la ROM. El de direcciones se utiliza única y exclusivamente para gestionar direcciones de memoria. Así, si la CPU necesita leer un dato en la dirección ABBFFFAA, mandará ABBFFFAA por el bus de direcciones, READ (leer) por el bus de control, y obtendrá el valor por el bus de datos. 
+DATA : Datos. 
+DMA  : Dispositivo de acceso directo a memoria (Direct Memory Access). Cuando el ordenador debe leer/escribir del disco, por ejemplo, le encarga el trabajo al DMA, indicándole en qué dirección de memoria debe poner/tomar los datos. Cuando el chip de DMA termina, avisa a la CPU mediante la activación de una línea IRQ exclusiva. 
+IRQ  : Petición de interrupción (Interrupt Request). 
+SHR  : Desplazamiento de bits, de un byte o una palabra, a la derecha. 
+SHL  : Desplazamiento de bits, de un byte o una palabra, a la izquierda. 
+ADD  : Sumar dos números. 
+MUL  : Multiplicar dos números. 
+INTF : Interfaz de entrada/salida. 
+
+Este manual lo conservas desde tus tiempos de estudiante. Te trae gratos recuerdos de aquella época.
+
+> ex pantalla
+En la pantalla, tu depurador marca la línea del programa que será ejecutada a continuación. La función que contiene el problema es la que estás depurando ahora, la de "pideDatosAlUsuario()":
+
+void pideDatosAlUsuario() {
+    int x = pideLongitudPlano();
+    int y = pideLongitudProfundidad();
+
+    return x * y;
+}
+
+En el visor de variables, se lee:
+x(0x0AB7DEFF): 0
+y(0x0AB7DFFF): 0 
+
+La barra de estado reza: "Pulse F7 para entrar en la función".
+
+La barra marcadora está situada en:
+"int x = pideLongitudPlano();"
+
+>ex teclado
+Pues sí, un teclado. Ya sabes, de esos llenos de teclas ...
+
+>pulsa teclado
+Pulsas F7...
+
+De repente, todo cambia... Un destello cegador parece provenir de la pantalla...
+
+El destello de luz te envuelve, bañando las paredes del habitáculo, cegándote... y lo siguiente que puedes percibir es como si viajaras a gran velocidad...
+
+...la pantalla aparece de nuevo frente a tí, apróximándose vertiginosamente...
+...los puntos de la pantalla aparecen cada vez más definidos...
+...cada vez más separados...
+
+Una transformación que no puedes describir tiene lugar en ti... te notas extraño... ¡plano!
+
+Y finalmente, apareces en un cuarto llamado DMA, del cuál un brazo robotizado con una espátula en su final te recoge... para colocarte en un carrito, encima de un carril llamado BUS.
+Mientras te desplazas por el BUS, puedes ver una línea roja que se activa, con el indicador "IRQ".
+
+.end
+
+RAM
+El lugar en el que reposas ... sí, reposar sería la mejor forma de decirlo ... es una gran caja en la que existen un montón de divisiones. Tú ocupas una de ellas.
+
+Desde aquí puedes ver las líneas de IRQ.
+
+Puedes ver un cartel y una etiqueta.
+
+
+
+

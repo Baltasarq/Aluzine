@@ -1,3 +1,4 @@
+Puesto de trabajo
 Trabajar hasta muy tarde parece que es el pan de cada día, últimamente. La empresa PBCProyectos está soportando la mayor demanda de trabajo de los últimos meses. Esta vez se trata de una aplicación de cálculo de superficies que una empresa de arquitectura necesita urgentemente.
 Y te ha tocado a tí, claro...
 Tienes tantas ganas de irte a casa que se te cierran los ojos.
@@ -5,9 +6,10 @@ Tienes tantas ganas de irte a casa que se te cierran los ojos.
 Aluzine v2 20200229
 La aventura del trabajo diario de un programador...
 
-
-Habitáculo
 En la oficina. O mejor dicho en tu parte de ella, con su pequeña abertura lateral al resto del mundo. La penumbra envuelve el pequeño habitáculo, ya que, exceptuándote a ti, todos se han ido ya. El flexo, que ilumina la pantalla de tu equipo con su suave ronroneo, es tu única compañía ahora, a excepción del suave ronroneo del equipo. Una estantería se sitúa por encima de tu cabeza.
+
+>ex flexo
+El flexo ilumina débilmente la pantalla.
 
 > ex estanteria
 Sobre la estantería ves varios libracos: manuales.
@@ -64,6 +66,9 @@ Pues sí, un teclado. Ya sabes, de esos llenos de teclas ...
 >pulsa teclado
 Pulsas F7...
 
+.end
+
+DMA
 De repente, todo cambia... Un destello cegador parece provenir de la pantalla...
 
 El destello de luz te envuelve, bañando las paredes del habitáculo, cegándote... y lo siguiente que puedes percibir es como si viajaras a gran velocidad...
@@ -87,5 +92,91 @@ Desde aquí puedes ver las líneas de IRQ.
 Puedes ver un cartel y una etiqueta.
 
 
+>ex caja
+Tiene un montón de divisiones, donde hay otras "cosas" igualitas a ti.
 
+>ex cartel
+El cartel indica: "bank 3BF". Debajo de él hay varias etiquetas. Una de ellas está justamente enfrente a tí.
 
+>ex etiqueta
+Hay varias, secuenciales, cada una con su número, en hexadecimal.
+La que está enfrente de ti, reza: #0AB7DEFF
+
+>ex irq
+Hay varias líneas de IRQ, cada una etiquetada con su número. Una de ellas está activada.
+
+.end
+
+Cache
+Un brazo mecanizado, terminado en una especie de espátula, te recoge de tu plaza y te coloca en un carrito.
+El carrito corre por un lugar etiquetado como DATA BUS, a una velocidad espantosa, que, sorprendentemente, no te da miedo...
+
+Estás en otra gran caja, como la anterior, pero, en este caso, no hay etiquetas, sino indicadores, que cada vez que se encienden, provocan la salida de los otros como tú, tal y como ves constantemente a tu alrededor.
+Hay un avisador, con las siglas "CPU" marcadas en blanco en su parte superior. Es como un gran marcador, en el centro de esta caja, que cambia, vertiginosa, contínuamente, y según puedes ver, cada vez que cambia salen otros como tú de sus plazas hacia el DATA BUS. No puedes saber cuál es su destino, pero supones que será distinto para cada una de las operaciones.
+
+Desde aquí puedes ver las líneas de IRQ.
+
+Puedes ver un indicador y un avisador.
+
+> ex indicador
+Los indicadores son como bombillas, que, cuando se encienden, provoca la salida de las otras "cosas" de sus plazas.
+Tú tienes el tuyo. Sientes que, de alguna forma, directamente, podrías activarlo.
+
+> ex avisador
+El avisador parece marcar contínuamente las operaciones de la CPU. Cada vez que te fijas en él, ya no marca lo que marcaba antes ... 
+Ahora mismo marca: ADD
+
+.end
+
+DMA2
+>activa indicador
+Ese familiar brazo robotizado te recoge, y te coloca en el DATA BUS ... ves de reojo como otra línea de IRQ se activa ... 
+la velocidad aumenta ... te diriges a una parte que ya te resulta extrañamente familiar ... 
+
+Te encuentras en un lugar extraño llamado "DMA", aunque... un momento... ¡ya has estado aquí antes! ...pero no en esta parte... ...es como una especie de túnel, en el que puedes ver un destello de luz al final.
+
+Algo te empuja hacia el exterior... la luz va haciéndose más amplia y brillante...
+
+Te ves envuelto en la luz ... una luz cegadora, que te empuja y parece trasladarte, a algún lugar ...
+... a una velocidad asombrosa ... notas el vértigo en tu estómago ...
+Notas un cambio en ti ...
+Ahora, ya no te mueves ...
+...
+Todo está oscuro. Estás desorientado. ¿Dónde estás ahora?
+Sin embargo, notas ahora todos tus miembros. ¡Vuelven a estar en su sitio!.
+Repentinamente, convulsivamente, aspiras una gran bocanada de aire, como si no lo hubieras hecho por minutos ...
+Te encuentras doblado en una situación que te resulta extraña ...
+Instintivamente ... levantas la cabeza. Y te das cuenta de que no veías nada porque tenías la cara entre los brazos.
+Estás en el habitáculo. Todo vuelve a su sitio. Todo está en su sitio, sí. La pantalla, el teclado, el equipo, el flexo ... todo normal.
+Tu respiración se normaliza, paulatinamente. Poco a poco ... tu cabeza empieza a funcionar.
+Intentas buscar una explicación.
+Debes haberte quedado dormido ...
+Todo ha sido un sueño ...
+¿No?
+
+.end
+
+Pasillo
+El pasillo está envuelto en penumbra. Aunque sabes que un poco más a la izquierda están los ascensores, y la máquina de café está ahí mismo, enfrente de ti.
+Puedes (¿debes?) volver a tu habitáculo.
+No puedes dejar de mirar hacia atrás, hacia tu habitáculo, como si fuera la última vez ...
+La pantalla parpadea ligeramente cuando no miras directamente hacia ella. Todo parece normal ... tan normal ...
+
+Hay un ascensor abierto en esta planta.
+
+>ex maquina
+Es una máquina de café sencilla. Es de la empresa, por lo que no es necesario utilizar monedas, y tiene un botón que hace que salga café.
+
+>ex ascensor
+Es el típico ascensor de siempre.
+
+> entra
+
+Ascensor
+Te vas a casa tranquilamente: mañana será otro día. Al fin y al cabo, en este estado de poco sirves a la empresa.
+
+Aluzine es una aventura programada en un par de tardes, para participar urgentemente en la NanoComp 4.
+Como curiosidad, quizás te preguntarás qué significan las siglas PBC ... bueno, es un término acuñado en la universidad, que significa "Pu... Becario de los Coj...". Encantador, ¿no?.
+
+Mándame tus comentarios a:
+baltasarq@gmail.com

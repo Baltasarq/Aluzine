@@ -20,7 +20,7 @@ ctrl.setIntro( "<p>La aventura del trabajo diario de un programador...</p>\
                 <br/>Y te ha tocado a tí, claro..." );
 ctrl.setPic( "res/aluzine-title.jpg" );
 ctrl.setAuthor( "baltasarq@gmail.com" );
-ctrl.setVersion( "v2 20200229" );
+ctrl.setVersion( "2 20200229" );
 
 
 // *** Cubicule ----------------------------------------------------------------

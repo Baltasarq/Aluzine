@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+    <story>
+        <identification>
+            <ifid>1262A855-8FEC-4B98-9731-5A32712F22CD</ifid>
+            <format>glulx</format>
+        </identification>
+        <bibliographic>
+            <title>Aluzine</title>
+            <author>Baltasar</author>
+            <language>ES</language>
+            <headline>La aventura del trabajo diario de un programador...</headline>
+            <genre>surreal</genre>
+            <forgiveness>merciful</forgiveness>
+            <description>Trabajar hasta muy tarde parece que es el pan de cada día, últimamente. La empresa PBCProyectos está soportando la mayor demanda de trabajo de los últimos meses. Esta vez se trata de una aplicación de cálculo de superficies que una empresa de arquitectura necesita urgentemente. Y te ha tocado a tí, claro... Tienes tantas ganas de irte a casa que se te cierran los ojos.</description>
+        </bibliographic>
+        <contacts>
+            <authoremail>baltasarq@gmail.com</authoremail>
+            <url>http://caad.es/baltasarq/</url>
+        </contacts>
+        <release>
+            <version>2</version>
+            <releasedate>2020/02/13</releasedate>
+        </release>
+        <colophon>
+            <generator>Babble</generator>
+            <originated>2020/02/13</originated>
+        </colophon>
+    </story>
+</ifindex>

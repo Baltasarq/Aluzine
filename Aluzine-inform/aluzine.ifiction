@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+    <story>
+        <identification>
+            <format>zcode</format>
+        </identification>
+        <bibliographic>
+            <title>Aluzine</title>
+            <author>Baltasar</author>
+            <language>ES</language>
+            <headline>Dentro del ordenador</headline>
+            <genre>Science_Fiction</genre>
+            <description>Otra vez te ha tocado a ti. Se trata de una aplicación de cálculo de superficies que tenía que estar terminada para ayer... y aquí estás, a las tantas, muerto de sueño, depurando una función que no acaba de ir bien.&lt;br&gt;&lt;br&gt;Again it's your turn to work late. Another area calculus application that should have been finished yesterday...  and here your are, sleepy, debugging a function that seems to neve be correct.</description>
+        </bibliographic>
+        <contacts>
+            <authoremail>baltasarq@gmail.com</authoremail>
+        </contacts>
+        <release>
+            <version>1</version>
+            <releasedate>2004/01/06</releasedate>
+        </release>
+        <colophon>
+            <generator>Inferno</generator>
+            <originated>2004/01/06</originated>
+        </colophon>
+    </story>
+</ifindex>

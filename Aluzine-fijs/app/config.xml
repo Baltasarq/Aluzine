@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.devbaltasarq.aluzine" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.devbaltasarq.aluzine" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Aluzine</name>
     <description>
         La aventura del trabajo dirario de un programador...
@@ -12,13 +12,7 @@
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
     <platform name="android">
-        <allow-intent href="market:*" />
-        
         <!--
         	ldpi    : 36x36 px
         	mdpi    : 48x48 px
@@ -37,9 +31,5 @@
 
         <icon src="res/icon/android/aluzine.png" />
         <splash src="res/icon/android/aluzine.png" />
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
     </platform>
 </widget>

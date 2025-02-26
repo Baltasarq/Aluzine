@@ -1,1 +1,1 @@
-Aluzine-fijs/app/www/res
+Aluzine-fijs/app/res

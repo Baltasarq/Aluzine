@@ -1,1 +1,1 @@
-Aluzine-fijs/app/www/aluzine.js
+Aluzine-fijs/app/aluzine.js
